@@ -4,7 +4,7 @@ A real-time dashboard that syncs with Google Sheets to categorize startup submis
 
 ## 🚀 Live Demo
 
-Deploy this to Vercel: [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/PragyaAwl/Navrix)
+**GitHub Pages**: [https://pragyaawl.github.io/Navrix/](https://pragyaawl.github.io/Navrix/)
 
 ## ✨ Features
 
@@ -16,6 +16,7 @@ Deploy this to Vercel: [![Deploy with Vercel](https://vercel.com/button)](https:
   - 📋 Unreviewed (no score/empty)
 - **Interactive Dashboard**: Click categories to drill down into entries
 - **Responsive Design**: Works on desktop and mobile
+- **Static Site**: Runs entirely in the browser, no server required
 
 ## 🛠️ Setup Instructions
 
@@ -25,21 +26,13 @@ git clone https://github.com/PragyaAwl/Navrix.git
 cd Navrix
 ```
 
-### 2. Install Dependencies
-```bash
-npm install
+### 2. Configure Google Sheet ID
+Edit `script.js` and replace the Google Sheet ID:
+```javascript
+const GOOGLE_SHEET_ID = 'your_sheet_id_here';
 ```
 
-### 3. Environment Configuration
-
-1. Copy `.env.example` to `.env`
-2. Add your Google Sheet ID:
-```
-GOOGLE_SHEET_ID=your_sheet_id_here
-PORT=3000
-```
-
-### 4. Google Sheet Setup
+### 3. Google Sheet Setup
 
 **Make your Google Sheet public:**
 1. Open your Google Sheet
@@ -65,72 +58,91 @@ PORT=3000
 - Drive Link
 - Scores
 
-### 5. Run Locally
+### 4. Run Locally
 
-Development mode:
+Simply open `index.html` in your browser, or use a local server:
+
 ```bash
-npm run dev
+# Using Python
+python -m http.server 8000
+
+# Using Node.js
+npx serve .
+
+# Using PHP
+php -S localhost:8000
 ```
 
-Production mode:
-```bash
-npm start
-```
+Visit `http://localhost:8000` to view the dashboard.
 
-Visit `http://localhost:3000` to view the dashboard.
+## 🚀 Deploy to GitHub Pages
 
-## 🚀 Deploy to Vercel
+### Enable GitHub Pages:
+1. Go to your repository settings
+2. Scroll to "Pages" section
+3. Select "Deploy from a branch"
+4. Choose "main" branch
+5. Select "/ (root)" folder
+6. Click "Save"
 
-### Option 1: One-Click Deploy
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/PragyaAwl/Navrix)
-
-### Option 2: Manual Deploy
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy
-vercel
-
-# Add environment variable
-vercel env add GOOGLE_SHEET_ID
-
-# Redeploy with env vars
-vercel --prod
-```
+Your dashboard will be live at: `https://yourusername.github.io/repositoryname/`
 
 ## 📊 How It Works
 
-1. **Data Fetching**: Fetches data from public Google Sheets via CSV export
-2. **Categorization**: Entries are automatically categorized based on scores
-3. **Real-time Updates**: Polls Google Sheets every 30 seconds for changes
-4. **Smart Detection**: New entries without scores go to "Unreviewed"
-5. **Dynamic Movement**: Entries move between categories when scores are updated
+1. **Data Fetching**: Fetches data directly from public Google Sheets via CSV export
+2. **Client-Side Processing**: All data processing happens in the browser
+3. **Categorization**: Entries are automatically categorized based on scores
+4. **Real-time Updates**: Polls Google Sheets every 30 seconds for changes
+5. **Smart Detection**: New entries without scores go to "Unreviewed"
+6. **Dynamic Movement**: Entries move between categories when scores are updated
 
 ## 🎯 Usage
 
 1. **Main Dashboard**: View all 4 categories with entry counts
 2. **Click Categories**: Drill down to see detailed entries
 3. **Back Navigation**: Return to main dashboard easily
-4. **Auto-Updates**: Data refreshes automatically
-
-## 🔧 API Endpoints
-
-- `GET /api/dashboard` - Get current dashboard data
-- `GET /api/health` - Health check
+4. **Auto-Updates**: Data refreshes automatically every 30 seconds
 
 ## 🎨 Customization
 
-- Modify score thresholds in `api/server.js` (categorizeEntry function)
-- Update polling interval (currently 30 seconds for serverless)
-- Customize UI styling in `public/styles.css`
-- Add additional fields by updating the entry card template
+- **Sheet ID**: Update `GOOGLE_SHEET_ID` in `script.js`
+- **Score Thresholds**: Modify `categorizeEntry()` function in `script.js`
+- **Update Interval**: Change the interval in the `setInterval()` call
+- **Styling**: Customize appearance in `styles.css`
+- **Entry Fields**: Update `createEntryCard()` function for different data fields
 
 ## 🐛 Troubleshooting
 
-1. **No data showing**: Check Google Sheets permissions (must be public)
-2. **Not updating**: Verify sheet is accessible via CSV export URL
-3. **Deployment issues**: Ensure environment variables are set in Vercel
+1. **No data showing**: 
+   - Check Google Sheets permissions (must be public)
+   - Verify the Sheet ID in `script.js`
+   - Check browser console for errors
+
+2. **CORS errors**: 
+   - Ensure sheet is publicly accessible
+   - Try different browsers
+   - Use a local server instead of opening HTML directly
+
+3. **Not updating**: 
+   - Verify sheet is accessible via CSV export URL
+   - Check network tab in browser dev tools
+
+## 📁 File Structure
+
+```
+├── index.html          # Main HTML file
+├── styles.css          # Styling
+├── script.js           # JavaScript logic
+├── README.md           # Documentation
+└── .gitignore         # Git ignore rules
+```
+
+## 🌐 Browser Compatibility
+
+- Chrome/Edge: Full support
+- Firefox: Full support
+- Safari: Full support
+- Mobile browsers: Responsive design
 
 ## 📝 License
 
