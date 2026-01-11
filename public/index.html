@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startup Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Startup Submissions Dashboard</h1>
+            <div class="status-indicator">
+                <span id="connectionStatus" class="status-dot offline"></span>
+                <span>Real-time Updates</span>
+            </div>
+        </header>
+
+        <!-- Main Dashboard View -->
+        <div class="dashboard-grid" id="dashboardView">
+            <div class="category-box platinum clickable" data-category="platinum">
+                <div class="category-header">
+                    <h2>Platinum (85-100)</h2>
+                    <span class="count" id="platinumCount">0</span>
+                </div>
+                <div class="category-preview">
+                    <p>Click to view entries</p>
+                    <div class="arrow">→</div>
+                </div>
+            </div>
+
+            <div class="category-box gold clickable" data-category="gold">
+                <div class="category-header">
+                    <h2>Gold (70-84)</h2>
+                    <span class="count" id="goldCount">0</span>
+                </div>
+                <div class="category-preview">
+                    <p>Click to view entries</p>
+                    <div class="arrow">→</div>
+                </div>
+            </div>
+
+            <div class="category-box silver clickable" data-category="silver">
+                <div class="category-header">
+                    <h2>Silver (0-69)</h2>
+                    <span class="count" id="silverCount">0</span>
+                </div>
+                <div class="category-preview">
+                    <p>Click to view entries</p>
+                    <div class="arrow">→</div>
+                </div>
+            </div>
+
+            <div class="category-box unreviewed clickable" data-category="unreviewed">
+                <div class="category-header">
+                    <h2>Unreviewed</h2>
+                    <span class="count" id="unreviewedCount">0</span>
+                </div>
+                <div class="category-preview">
+                    <p>Click to view entries</p>
+                    <div class="arrow">→</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category Detail View -->
+        <div class="category-detail-view" id="categoryDetailView" style="display: none;">
+            <div class="detail-header">
+                <button class="back-button" id="backButton">← Back to Dashboard</button>
+                <h2 id="categoryTitle">Category Details</h2>
+                <span class="detail-count" id="detailCount">0 entries</span>
+            </div>
+            <div class="entries-container" id="detailEntries"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
