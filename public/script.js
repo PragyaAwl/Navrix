@@ -147,10 +147,6 @@ function createEntryCard(entry) {
                     <strong>Email:</strong>
                     <span>${entry.what_is_your_email_address_ || 'N/A'}</span>
                 </div>
-                <div class="entry-detail">
-                    <strong>Stage:</strong>
-                    <span>${entry.current_stage_ || 'N/A'}</span>
-                </div>
                 ${hasScore ? `
                 <div class="entry-detail">
                     <strong>Score:</strong>
